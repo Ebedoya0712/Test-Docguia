@@ -19,8 +19,9 @@ export default function RootLayout({
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1"
         />
+        <link rel="icon" href="/images/logo.png" />
       </head>
-      <body className="min-h-screen bg-slate-50 text-slate-900 antialiased selection:bg-teal-100 selection:text-teal-900">
+      <body className="min-h-screen bg-[#faf8ff] text-slate-900 antialiased selection:bg-purple-100 selection:text-purple-900">
         {children}
       </body>
     </html>

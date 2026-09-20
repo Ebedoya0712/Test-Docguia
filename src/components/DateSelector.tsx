@@ -1,5 +1,5 @@
 import React from "react";
-import { Calendar, ChevronRight } from "lucide-react";
+import { Calendar } from "lucide-react";
 
 interface DateSelectorProps {
   selectedDate: string; // "YYYY-MM-DD"
@@ -37,7 +37,12 @@ export function DateSelector({
     const ymd = formatYMD(d);
     return {
       ymd,
-      dayName: i === 0 ? "Hoy" : i === 1 ? "Mañana" : d.toLocaleDateString("es-CL", { weekday: "short" }),
+      dayName:
+        i === 0
+          ? "Hoy"
+          : i === 1
+          ? "Mañana"
+          : d.toLocaleDateString("es-CL", { weekday: "short" }),
       dayNumber: d.getDate(),
       monthName: d.toLocaleDateString("es-CL", { month: "short" }),
     };
@@ -52,7 +57,7 @@ export function DateSelector({
         <div className="relative flex items-center">
           <label
             htmlFor="native-date-picker"
-            className="flex items-center gap-1.5 text-xs font-medium text-teal-700 bg-teal-50 hover:bg-teal-100/80 px-2.5 py-1 rounded-lg cursor-pointer transition"
+            className="flex items-center gap-1.5 text-xs font-medium text-purple-700 bg-purple-50 hover:bg-purple-100/80 px-2.5 py-1 rounded-lg cursor-pointer transition border border-purple-200/70"
           >
             <Calendar className="w-3.5 h-3.5" />
             <span>Ver calendario</span>
@@ -80,13 +85,13 @@ export function DateSelector({
               onClick={() => onSelectDate(qd.ymd)}
               className={`flex-shrink-0 flex flex-col items-center justify-center w-16 py-2.5 rounded-xl border transition-all active:scale-95 snap-start ${
                 isSelected
-                  ? "bg-teal-600 border-teal-600 text-white shadow-sm shadow-teal-600/20"
-                  : "bg-white border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50"
+                  ? "bg-purple-700 border-purple-700 text-white shadow-sm shadow-purple-700/20"
+                  : "bg-white border-slate-200 text-slate-700 hover:border-purple-200 hover:bg-purple-50/30"
               }`}
             >
               <span
                 className={`text-[11px] uppercase font-semibold tracking-wider ${
-                  isSelected ? "text-teal-100" : "text-slate-400"
+                  isSelected ? "text-purple-200" : "text-slate-400"
                 }`}
               >
                 {qd.dayName}
@@ -96,7 +101,7 @@ export function DateSelector({
               </span>
               <span
                 className={`text-[10px] capitalize ${
-                  isSelected ? "text-teal-100" : "text-slate-400"
+                  isSelected ? "text-purple-200" : "text-slate-400"
                 }`}
               >
                 {qd.monthName}
@@ -109,7 +114,7 @@ export function DateSelector({
       {/* Fecha seleccionada formateada */}
       <div className="text-xs text-slate-500 font-medium capitalize flex items-center gap-1 pt-0.5">
         <span>Fecha elegida:</span>
-        <span className="text-slate-800 font-semibold">
+        <span className="text-purple-950 font-semibold">
           {formatDateToLocal(selectedDate)}
         </span>
       </div>

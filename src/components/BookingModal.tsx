@@ -98,7 +98,8 @@ export function BookingModal({
       setIsConfirmed(true);
       onBookingSuccess();
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "Error al procesar la reserva";
+      const msg =
+        err instanceof Error ? err.message : "Error al procesar la reserva";
       setErrorMessage(msg);
     } finally {
       setIsSubmitting(false);
@@ -117,12 +118,12 @@ export function BookingModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-900/60 backdrop-blur-xs transition-opacity animate-in fade-in duration-200">
-      <div className="w-full sm:max-w-lg bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl border border-slate-100 max-h-[92vh] flex flex-col overflow-hidden animate-in slide-in-from-bottom-6 duration-200">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-purple-950/60 backdrop-blur-xs transition-opacity animate-in fade-in duration-200">
+      <div className="w-full sm:max-w-lg bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl border border-purple-100 max-h-[92vh] flex flex-col overflow-hidden animate-in slide-in-from-bottom-6 duration-200">
         {/* Header Modal */}
-        <div className="p-5 border-b border-slate-100 flex items-center justify-between">
+        <div className="p-5 border-b border-purple-50 flex items-center justify-between">
           <div>
-            <h3 className="font-bold text-slate-900 text-base">
+            <h3 className="font-bold text-purple-950 text-base">
               {isConfirmed ? "¡Reserva Confirmada!" : "Completar Reserva"}
             </h3>
             <p className="text-xs text-slate-500">
@@ -133,7 +134,7 @@ export function BookingModal({
           </div>
           <button
             onClick={handleClose}
-            className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition"
+            className="w-8 h-8 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-700 flex items-center justify-center transition"
           >
             <X className="w-4 h-4" />
           </button>
@@ -142,37 +143,37 @@ export function BookingModal({
         {/* Contenido */}
         <div className="p-5 overflow-y-auto space-y-5">
           {/* Tarjeta de Resumen de Cita */}
-          <div className="p-4 rounded-2xl bg-teal-50/70 border border-teal-100/80 space-y-2.5">
+          <div className="p-4 rounded-2xl bg-purple-50/70 border border-purple-100/80 space-y-2.5">
             <div className="flex items-center gap-3">
               {doctor.avatarUrl ? (
                 <img
                   src={doctor.avatarUrl}
                   alt={doctor.name}
-                  className="w-10 h-10 rounded-full object-cover border border-teal-200"
+                  className="w-10 h-10 rounded-full object-cover border border-purple-200"
                 />
               ) : (
-                <div className="w-10 h-10 rounded-full bg-teal-200 text-teal-900 flex items-center justify-center font-bold text-sm">
+                <div className="w-10 h-10 rounded-full bg-purple-200 text-purple-900 flex items-center justify-center font-bold text-sm">
                   {doctor.name[0]}
                 </div>
               )}
               <div>
-                <h4 className="font-semibold text-sm text-slate-900">
+                <h4 className="font-semibold text-sm text-purple-950">
                   {doctor.name}
                 </h4>
-                <p className="text-xs text-teal-800 font-medium">
+                <p className="text-xs text-purple-700 font-medium">
                   {doctor.specialty}
                 </p>
               </div>
             </div>
 
-            <div className="pt-2 border-t border-teal-100 flex flex-wrap gap-y-1 gap-x-4 text-xs text-slate-700">
+            <div className="pt-2 border-t border-purple-100 flex flex-wrap gap-y-1 gap-x-4 text-xs text-slate-700">
               <div className="flex items-center gap-1.5 capitalize">
-                <Calendar className="w-3.5 h-3.5 text-teal-700" />
+                <Calendar className="w-3.5 h-3.5 text-purple-700" />
                 <span>{formatDate(dateStr)}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-teal-700" />
-                <span className="font-semibold text-slate-900">
+                <Clock className="w-3.5 h-3.5 text-purple-700" />
+                <span className="font-semibold text-purple-950">
                   {slot.timeLabel} - {slot.endTimeLabel} (20 min)
                 </span>
               </div>
@@ -182,23 +183,24 @@ export function BookingModal({
           {/* VISTA DE CONFIRMACIÓN */}
           {isConfirmed ? (
             <div className="text-center py-4 space-y-4">
-              <div className="w-16 h-16 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center mx-auto ring-8 ring-teal-50">
+              <div className="w-16 h-16 bg-purple-100 text-purple-700 rounded-full flex items-center justify-center mx-auto ring-8 ring-purple-50">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
 
               <div>
-                <h4 className="font-bold text-lg text-slate-900">
+                <h4 className="font-bold text-lg text-purple-950">
                   Cita agendada con éxito
                 </h4>
                 <p className="text-xs text-slate-500 mt-1">
                   Hemos enviado los detalles de tu cita a{" "}
-                  <span className="font-semibold text-slate-700">
+                  <span className="font-semibold text-purple-900">
                     {patientEmail}
                   </span>
                 </p>
                 {confirmedBookingId && (
-                  <p className="text-[11px] text-slate-400 mt-2 font-mono">
-                    Código de cita: {confirmedBookingId.slice(0, 8).toUpperCase()}
+                  <p className="text-[11px] text-purple-400 mt-2 font-mono">
+                    Código de cita:{" "}
+                    {confirmedBookingId.slice(0, 8).toUpperCase()}
                   </p>
                 )}
               </div>
@@ -206,7 +208,7 @@ export function BookingModal({
               <div className="pt-2">
                 <button
                   onClick={handleClose}
-                  className="w-full py-3 px-4 bg-teal-600 hover:bg-teal-700 active:scale-[0.99] text-white text-sm font-semibold rounded-xl transition shadow-md shadow-teal-600/20"
+                  className="w-full py-3 px-4 bg-purple-700 hover:bg-purple-800 active:scale-[0.99] text-white text-sm font-semibold rounded-xl transition shadow-md shadow-purple-700/20"
                 >
                   Entendido / Agendar otra cita
                 </button>
@@ -257,7 +259,7 @@ export function BookingModal({
                       value={patientName}
                       onChange={(e) => setPatientName(e.target.value)}
                       disabled={isSubmitting || isConflict}
-                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
                     />
                   </div>
                 </div>
@@ -275,7 +277,7 @@ export function BookingModal({
                       value={patientEmail}
                       onChange={(e) => setPatientEmail(e.target.value)}
                       disabled={isSubmitting || isConflict}
-                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
                     />
                   </div>
                 </div>
@@ -292,7 +294,7 @@ export function BookingModal({
                       value={patientPhone}
                       onChange={(e) => setPatientPhone(e.target.value)}
                       disabled={isSubmitting || isConflict}
-                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
                     />
                   </div>
                 </div>
@@ -302,7 +304,7 @@ export function BookingModal({
                 <button
                   type="submit"
                   disabled={isSubmitting || isConflict}
-                  className="w-full py-3 px-4 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.99] text-white text-sm font-semibold rounded-xl transition shadow-md shadow-teal-600/20 flex items-center justify-center gap-2"
+                  className="w-full py-3 px-4 bg-purple-700 hover:bg-purple-800 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.99] text-white text-sm font-semibold rounded-xl transition shadow-md shadow-purple-700/20 flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
                     <>

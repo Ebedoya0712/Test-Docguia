@@ -91,27 +91,28 @@ export default function BookingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-[#faf8ff] flex flex-col font-sans">
       <Header />
 
-      <main className="flex-1 max-w-xl w-full mx-auto px-4 py-5 space-y-6">
-        {/* Banner de Bienvenida / Contexto */}
-        <div className="bg-gradient-to-r from-teal-700 to-emerald-800 rounded-2xl p-4 text-white shadow-sm flex items-start justify-between gap-3">
-          <div className="space-y-1">
-            <div className="flex items-center gap-1.5 text-teal-200 text-xs font-semibold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-teal-300" />
-              <span>Reserva Inmediata</span>
+      <main className="flex-1 max-w-xl w-full mx-auto px-4 py-5 space-y-5">
+        {/* Banner DocGuía */}
+        <div className="relative overflow-hidden bg-gradient-to-br from-purple-700 via-purple-800 to-purple-950 rounded-3xl p-5 text-white shadow-lg shadow-purple-900/15">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-10 -bottom-10 h-44 w-44 rounded-full bg-purple-500/20 blur-2xl"
+          />
+          <div className="relative space-y-1.5">
+            <div className="flex items-center gap-1.5 text-purple-200 text-xs font-semibold uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-purple-300" />
+              <span>Agenda Médica Online</span>
             </div>
-            <h2 className="text-base font-bold leading-snug">
-              Agenda tu consulta médica
+            <h2 className="text-lg font-bold leading-snug tracking-tight">
+              Reserva tu consulta médica
             </h2>
-            <p className="text-xs text-teal-100/90 leading-relaxed">
+            <p className="text-xs text-purple-100/80 leading-relaxed max-w-sm">
               Selecciona profesional y horario. Citas de 20 minutos con
               confirmación al instante.
             </p>
-          </div>
-          <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-xs flex items-center justify-center shrink-0">
-            <Stethoscope className="w-5 h-5 text-teal-100" />
           </div>
         </div>
 
@@ -126,7 +127,7 @@ export default function BookingPage() {
         </section>
 
         {/* 2. Selector de Fecha */}
-        <section className="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
+        <section className="bg-white p-4 rounded-2xl border border-purple-100/80 shadow-xs">
           <DateSelector
             selectedDate={selectedDate}
             onSelectDate={(d) => setSelectedDate(d)}
@@ -134,7 +135,7 @@ export default function BookingPage() {
         </section>
 
         {/* 3. Parrilla de Slots */}
-        <section className="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
+        <section className="bg-white p-4 rounded-2xl border border-purple-100/80 shadow-xs">
           <SlotGrid
             slots={slots}
             selectedSlot={selectedSlot}
@@ -148,12 +149,12 @@ export default function BookingPage() {
 
         {/* Garantías / Trust footer */}
         <footer className="pt-2 pb-6 text-center space-y-2">
-          <div className="inline-flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-            <ShieldCheck className="w-4 h-4 text-teal-600" />
+          <div className="inline-flex items-center gap-1.5 text-xs text-purple-900/80 font-medium bg-purple-50/80 border border-purple-200/60 px-3 py-1 rounded-full">
+            <ShieldCheck className="w-4 h-4 text-purple-600" />
             <span>Sistema seguro con protección contra reservas duplicadas</span>
           </div>
           <p className="text-[11px] text-slate-400">
-            DocGuía © {new Date().getFullYear()} — Plataforma de Gestión de Citas
+            DocGuía © {new Date().getFullYear()} — Plataforma de Gestión Médica
           </p>
         </footer>
       </main>

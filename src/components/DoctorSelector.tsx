@@ -50,7 +50,7 @@ export function DoctorSelector({
         <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
           Seleccionar Profesional
         </label>
-        <span className="text-xs text-slate-400">
+        <span className="text-xs text-purple-700 font-medium">
           {doctors.length} disponibles
         </span>
       </div>
@@ -68,8 +68,8 @@ export function DoctorSelector({
               onClick={() => onSelectDoctor(doctor)}
               className={`flex-shrink-0 w-64 text-left p-3.5 rounded-2xl border transition-all duration-150 snap-start active:scale-[0.98] ${
                 isSelected
-                  ? "bg-teal-50/80 border-teal-500 shadow-sm shadow-teal-500/10 ring-1 ring-teal-500"
-                  : "bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50/60"
+                  ? "bg-purple-50/80 border-purple-500 shadow-sm shadow-purple-500/10 ring-1 ring-purple-500"
+                  : "bg-white border-slate-200 hover:border-purple-200 hover:bg-purple-50/30"
               }`}
             >
               <div className="flex items-center gap-3">
@@ -78,15 +78,15 @@ export function DoctorSelector({
                     <img
                       src={doctor.avatarUrl}
                       alt={doctor.name}
-                      className="w-12 h-12 rounded-full object-cover border border-slate-200"
+                      className="w-12 h-12 rounded-full object-cover border border-purple-100 shadow-xs"
                     />
                   ) : (
-                    <div className="w-12 h-12 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-sm">
+                    <div className="w-12 h-12 rounded-full bg-purple-100 text-purple-800 flex items-center justify-center font-bold text-sm">
                       {doctor.name.replace("Dr. ", "").replace("Dra. ", "")[0]}
                     </div>
                   )}
                   {isSelected && (
-                    <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-teal-600 rounded-full flex items-center justify-center text-white ring-2 ring-white">
+                    <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-purple-600 rounded-full flex items-center justify-center text-white ring-2 ring-white">
                       <UserCheck className="w-2.5 h-2.5" />
                     </span>
                   )}
@@ -96,7 +96,7 @@ export function DoctorSelector({
                   <h3 className="font-semibold text-sm text-slate-900 truncate">
                     {doctor.name}
                   </h3>
-                  <p className="text-xs text-teal-700 font-medium truncate">
+                  <p className="text-xs text-purple-700 font-medium truncate">
                     {doctor.specialty}
                   </p>
                   <p className="text-[11px] text-slate-400 mt-1">

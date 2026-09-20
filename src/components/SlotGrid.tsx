@@ -65,12 +65,12 @@ export function SlotGrid({
   // 3. Estado vacío: El médico no tiene bloques de atención este día
   if (slots.length === 0) {
     return (
-      <div className="bg-white border border-dashed border-slate-300 rounded-2xl p-8 text-center space-y-3">
-        <div className="w-12 h-12 bg-slate-100 text-slate-400 rounded-2xl flex items-center justify-center mx-auto">
+      <div className="bg-white border border-dashed border-purple-200/80 rounded-2xl p-8 text-center space-y-3">
+        <div className="w-12 h-12 bg-purple-50 text-purple-400 rounded-2xl flex items-center justify-center mx-auto">
           <CalendarX className="w-6 h-6" />
         </div>
         <div className="max-w-xs mx-auto">
-          <h4 className="font-semibold text-slate-800 text-sm">
+          <h4 className="font-semibold text-purple-950 text-sm">
             Sin atención programada
           </h4>
           <p className="text-xs text-slate-500 mt-1">
@@ -114,12 +114,12 @@ export function SlotGrid({
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1.5">
-          <Clock className="w-4 h-4 text-teal-600" />
+          <Clock className="w-4 h-4 text-purple-600" />
           <h3 className="font-semibold text-sm text-slate-900">
             Horarios Disponibles
           </h3>
         </div>
-        <span className="text-xs font-medium text-teal-700 bg-teal-50 px-2 py-0.5 rounded-full border border-teal-200">
+        <span className="text-xs font-medium text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-200">
           {freeCount} de {slots.length} libres
         </span>
       </div>
@@ -173,14 +173,14 @@ export function SlotGrid({
         onClick={() => onSelectSlot(slot)}
         className={`min-h-[48px] flex flex-col items-center justify-center p-2 rounded-xl border transition-all duration-150 active:scale-95 ${
           isSelected
-            ? "bg-teal-600 border-teal-600 text-white shadow-md shadow-teal-600/20 ring-2 ring-teal-600/30"
-            : "bg-white border-slate-200 hover:border-teal-500 hover:bg-teal-50/50 text-slate-800"
+            ? "bg-purple-700 border-purple-700 text-white shadow-md shadow-purple-700/20 ring-2 ring-purple-700/30"
+            : "bg-white border-slate-200 hover:border-purple-500 hover:bg-purple-50/50 text-slate-800"
         }`}
       >
         <span className="text-sm font-semibold">{slot.timeLabel}</span>
         <span
           className={`text-[10px] ${
-            isSelected ? "text-teal-100" : "text-slate-400"
+            isSelected ? "text-purple-200" : "text-slate-400"
           }`}
         >
           20 min
