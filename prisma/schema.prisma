@@ -1,0 +1,47 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Doctor {
+  id             String         @id @default(uuid())
+  name           String
+  specialty      String
+  avatarUrl      String?
+  availabilities Availability[]
+  appointments   Appointment[]
+  createdAt      DateTime       @default(now())
+}
+
+model Availability {
+  id        String   @id @default(uuid())
+  doctorId  String
+  doctor    Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  dayOfWeek Int      // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
+  startTime String   // "HH:mm", ej. "08:00"
+  endTime   String   // "HH:mm", ej. "12:00"
+  createdAt DateTime @default(now())
+
+  @@index([doctorId, dayOfWeek])
+}
+
+model Appointment {
+  id           String   @id @default(uuid())
+  doctorId     String
+  doctor       Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  patientName  String
+  patientEmail String
+  patientPhone String?
+  startTime    DateTime
+  endTime      DateTime
+  status       String   @default("CONFIRMED")
+  createdAt    DateTime @default(now())
+
+  @@unique([doctorId, startTime])
+  @@index([doctorId, startTime])
+}
