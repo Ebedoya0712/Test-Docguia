@@ -26,6 +26,10 @@ yarn-error.log*
 .env*.local
 .env
 
+# agent configs
+AGENTS.md
+CLAUDE.md
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
