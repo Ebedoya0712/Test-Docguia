@@ -14,9 +14,13 @@ export async function GET() {
 
     return NextResponse.json(doctors);
   } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
     console.error("Error al obtener médicos:", error);
     return NextResponse.json(
-      { error: "Error al obtener la lista de médicos" },
+      {
+        error: "Error al obtener la lista de médicos",
+        detail: message,
+      },
       { status: 500 }
     );
   }

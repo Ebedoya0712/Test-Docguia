@@ -74,9 +74,13 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    const message = error instanceof Error ? error.message : String(error);
     console.error("Error al registrar reserva:", error);
     return NextResponse.json(
-      { error: "Error interno al procesar la reserva" },
+      {
+        error: "Error interno al procesar la reserva",
+        detail: message,
+      },
       { status: 500 }
     );
   }

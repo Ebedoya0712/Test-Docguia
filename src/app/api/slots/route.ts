@@ -78,9 +78,13 @@ export async function GET(request: NextRequest) {
       slots,
     });
   } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
     console.error("Error al calcular slots:", error);
     return NextResponse.json(
-      { error: "Error interno al calcular slots" },
+      {
+        error: "Error interno al calcular slots",
+        detail: message,
+      },
       { status: 500 }
     );
   }
