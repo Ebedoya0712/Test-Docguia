@@ -94,7 +94,7 @@ export default function BookingPage() {
     <div className="min-h-screen bg-[#faf8ff] flex flex-col font-sans">
       <Header />
 
-      <main className="flex-1 max-w-xl w-full mx-auto px-4 py-5 space-y-5">
+      <main className="flex-1 max-w-xl sm:max-w-2xl w-full mx-auto px-4 py-5 space-y-5">
         {/* Banner DocGuía */}
         <div className="relative overflow-hidden bg-gradient-to-br from-purple-700 via-purple-800 to-purple-950 rounded-3xl p-5 text-white shadow-lg shadow-purple-900/15">
           <div

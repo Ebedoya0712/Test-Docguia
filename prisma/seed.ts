@@ -35,7 +35,7 @@ async function main() {
     data: {
       name: "Dra. Valentina Soto",
       specialty: "Pediatría",
-      avatarUrl: "https://images.unsplash.com/photo-1594824813873-633221e35a16?w=200&auto=format&fit=crop&q=80",
+      avatarUrl: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&auto=format&fit=crop&q=80",
       availabilities: {
         create: [
           // Martes (2)

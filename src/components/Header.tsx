@@ -4,7 +4,7 @@ import { CalendarCheck2 } from "lucide-react";
 export function Header() {
   return (
     <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-purple-100 shadow-xs">
-      <div className="max-w-xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="max-w-xl sm:max-w-2xl mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="h-8 flex items-center">
             <img
