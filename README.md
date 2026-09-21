@@ -24,13 +24,14 @@ Módulo ágil y optimizado para móviles diseñado para que pacientes y profesio
 El diseño está centrado en el uso desde teléfonos móviles:
 
 - **Touch Targets Ergonómicos**: Botones de slots de al menos 48px de alto, agrupados en **Mañana** y **Tarde** para reducir la fatiga visual.
-- **Selector Rápido de Días**: Chips horizontales deslizables con touch nativo ("Hoy", "Mañana", etc.) más selector de calendario nativo (`<input type="date">`) para evitar dependencias innecesarias.
+- **Grid de Médicos Responsivo**: Visualización en 3 columnas simétricas en escritorio y filas de ancho completo en móvil, evitando cualquier corte visual de las tarjetas.
+- **Selector Rápido de Días**: Chips táctiles ("Hoy", "Mañana", etc.) más selector de calendario nativo (`<input type="date">`) para evitar dependencias innecesarias.
 - **Estados Vacíos con Contexto**:
-  - Si el médico no atiende un día (ej. domingo), el sistema no muestra una pantalla en blanco: explica amablemente que no atiende ese día y qué días sí tiene consulta.
+  - Si el médico no atiende un día (ej. domingo), explica amablemente que no atiende ese día y qué días sí tiene consulta.
   - Si todos los cupos fueron tomados, indica claramente "Cupos agotados para este día".
 - **Estados de Carga y Error**: Skeletons visuales con pulsación durante las consultas y botón de reintento ante errores de red.
 - **Manejo del Conflicto de Reserva**: Si un slot es ganado por otro paciente mientras se llenaba el formulario, el modal no falla en silencio: muestra una alerta explicativa, actualiza la disponibilidad de fondo y permite elegir otro horario sin perder el contexto.
-- **Confirmación Visual**: Pantalla de éxito con resumen de la cita y código identificador.
+- **Confirmación Visual Animada (SweetAlert)**: Modal de éxito emergente en color púrpura oficial de DocGuía con trazado animado de SVG checkmark, resumen completo de la cita y código identificador.
 
 ---
 
