@@ -107,11 +107,11 @@ export default function BookingPage() {
               <span>Agenda Médica Online</span>
             </div>
             <h2 className="text-lg font-bold leading-snug tracking-tight">
-              Reserva tu consulta médica
+              Agenda tu cita médica con DocGuía
             </h2>
             <p className="text-xs text-purple-100/80 leading-relaxed max-w-sm">
-              Selecciona profesional y horario. Citas de 20 minutos con
-              confirmación al instante.
+              Elige a tu especialista y confirma tu bloque de atención de
+              forma rápida y sencilla.
             </p>
           </div>
         </div>
