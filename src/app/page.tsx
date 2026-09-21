@@ -6,6 +6,7 @@ import { DoctorSelector, Doctor } from "@/components/DoctorSelector";
 import { DateSelector } from "@/components/DateSelector";
 import { SlotGrid } from "@/components/SlotGrid";
 import { BookingModal } from "@/components/BookingModal";
+import { SuccessAlertModal } from "@/components/SuccessAlertModal";
 import { TimeSlot } from "@/lib/slots";
 import { Stethoscope, ShieldCheck, Sparkles } from "lucide-react";
 
@@ -31,6 +32,14 @@ export default function BookingPage() {
   const [slotsError, setSlotsError] = useState<string | null>(null);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [successBooking, setSuccessBooking] = useState<{
+    id: string;
+    patientName: string;
+    patientEmail: string;
+    doctor: Doctor | null;
+    slot: TimeSlot | null;
+    dateStr: string;
+  } | null>(null);
 
   // Cargar médicos
   useEffect(() => {
@@ -159,16 +168,36 @@ export default function BookingPage() {
         </footer>
       </main>
 
-      {/* Modal de Reserva y Confirmación */}
+      {/* Modal de Reserva */}
       <BookingModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         doctor={selectedDoctor}
         slot={selectedSlot}
         dateStr={selectedDate}
-        onBookingSuccess={() => {
+        onBookingSuccess={(bookingData) => {
           fetchSlots();
+          if (bookingData) {
+            setSuccessBooking({
+              ...bookingData,
+              doctor: selectedDoctor,
+              slot: selectedSlot,
+              dateStr: selectedDate,
+            });
+          }
         }}
+      />
+
+      {/* Alerta de Éxito estilo SweetAlert en Púrpura DocGuía */}
+      <SuccessAlertModal
+        isOpen={!!successBooking}
+        onClose={() => setSuccessBooking(null)}
+        doctor={successBooking?.doctor || null}
+        slot={successBooking?.slot || null}
+        dateStr={successBooking?.dateStr || ""}
+        patientName={successBooking?.patientName || ""}
+        patientEmail={successBooking?.patientEmail || ""}
+        bookingId={successBooking?.id || null}
       />
     </div>
   );

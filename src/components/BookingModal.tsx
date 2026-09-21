@@ -22,7 +22,11 @@ interface BookingModalProps {
   doctor: Doctor | null;
   slot: TimeSlot | null;
   dateStr: string;
-  onBookingSuccess: () => void;
+  onBookingSuccess: (bookingData?: {
+    id: string;
+    patientName: string;
+    patientEmail: string;
+  }) => void;
 }
 
 export function BookingModal({
@@ -99,10 +103,13 @@ export function BookingModal({
         throw new Error(data.error || "Ocurrió un error al reservar");
       }
 
-      // Éxito
-      setConfirmedBookingId(data.id);
-      setIsConfirmed(true);
-      onBookingSuccess();
+      // Éxito: Notificar datos para mostrar el SweetAlert y cerrar el formulario
+      onBookingSuccess({
+        id: data.id,
+        patientName,
+        patientEmail,
+      });
+      handleClose();
     } catch (err: unknown) {
       const msg =
         err instanceof Error ? err.message : "Error al procesar la reserva";
