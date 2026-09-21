@@ -103,10 +103,23 @@ async function main() {
     },
   });
 
+  // Asegurar que la tabla Appointment esté expuesta en Supabase Realtime
+  try {
+    await prisma.$executeRawUnsafe(
+      'ALTER PUBLICATION supabase_realtime ADD TABLE "Appointment";'
+    );
+    await prisma.$executeRawUnsafe(
+      'ALTER TABLE "Appointment" REPLICA IDENTITY FULL;'
+    );
+  } catch {
+    // Si la tabla ya estaba agregada o el entorno no soporta la publicación, ignorar
+  }
+
   console.log("✅ Seed completado con éxito:");
   console.log(`- 3 médicos creados.`);
   console.log(`- Disponibilidades configuradas.`);
   console.log(`- 2 citas de demostración sembradas para el próximo lunes (${y}-${m + 1}-${d}).`);
+  console.log(`- Supabase Realtime habilitado para Appointment.`);
 }
 
 main()

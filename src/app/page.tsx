@@ -99,15 +99,18 @@ export default function BookingPage() {
   // Sincronización en vivo con Supabase Realtime (WebSockets)
   useEffect(() => {
     const channel = supabase
-      .channel("appointments-realtime")
+      .channel("appointments-realtime-channel")
       .on(
         "postgres_changes",
         { event: "*", schema: "public", table: "Appointment" },
-        () => {
+        (payload) => {
+          console.log("[Supabase Realtime] Cambio detectado en citas:", payload.eventType);
           fetchSlots();
         }
       )
-      .subscribe();
+      .subscribe((status) => {
+        console.log("[Supabase Realtime] Estado de conexión:", status);
+      });
 
     return () => {
       supabase.removeChannel(channel);
