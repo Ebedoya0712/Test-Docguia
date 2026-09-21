@@ -13,7 +13,11 @@ Módulo ágil y optimizado para móviles diseñado para que pacientes y profesio
 3. **Manejo de Condiciones de Carrera (Race Conditions)**:
    - A nivel de base de datos se estableció una restricción única compuesta: `@@unique([doctorId, startTime])`.
    - Si dos usuarios intentan reservar el mismo slot simultáneamente, la base de datos rechaza la segunda inserción mediante una violación de restricción (`P2002`). La API intercepta este error y responde con `HTTP 409 Conflict`.
-4. **Prisma + PostgreSQL (Supabase)**:
+4. **Sincronización en Tiempo Real (Supabase Realtime / WebSockets)**:
+   - Subscripción reactiva en el cliente a los cambios de la tabla `Appointment`. Cuando cualquier usuario reserva o cancela una cita, la parrilla de horarios de todos los usuarios conectados se actualiza en vivo instantáneamente sin requerir refresco de página.
+5. **Flujo Seguro de Cancelación por Token**:
+   - Cada cita genera un `cancelToken` único (UUID v4). El paciente recibe un enlace seguro (`/cancelar/[token]`) desde el cual puede revocar su turno, liberando de inmediato el slot para otros usuarios en tiempo real.
+6. **Prisma + PostgreSQL (Supabase)**:
    - Modelado relacional limpio: `Doctor`, `Availability` (bloques semanales por día) y `Appointment` (citas confirmadas con timestamp UTC).
    - Soporte para Transaction Pooler y Direct Connection para despliegue sin problemas de conexiones en serverless/Vercel.
 
@@ -31,7 +35,7 @@ El diseño está centrado en el uso desde teléfonos móviles:
   - Si todos los cupos fueron tomados, indica claramente "Cupos agotados para este día".
 - **Estados de Carga y Error**: Skeletons visuales con pulsación durante las consultas y botón de reintento ante errores de red.
 - **Manejo del Conflicto de Reserva**: Si un slot es ganado por otro paciente mientras se llenaba el formulario, el modal no falla en silencio: muestra una alerta explicativa, actualiza la disponibilidad de fondo y permite elegir otro horario sin perder el contexto.
-- **Confirmación Visual Animada (SweetAlert)**: Modal de éxito emergente en color púrpura oficial de DocGuía con trazado animado de SVG checkmark, resumen completo de la cita y código identificador.
+- **Confirmación Visual Animada (SweetAlert)**: Modal de éxito emergente en color púrpura oficial de DocGuía con trazado animado de SVG checkmark, resumen completo de la cita, enlace directo de autogestión/cancelación y código identificador.
 
 ---
 
@@ -51,10 +55,9 @@ npm test
 
 ## ⏱️ Qué se dejó fuera por tiempo (Próximos Pasos)
 
-- **WebSockets / Supabase Realtime**: Para que los slots reservados por otros usuarios se deshabiliten en vivo en la pantalla de los demás sin requerir refresco manual.
 - **Gestión de Excepciones y Feriados**: Bloqueos de fechas específicas (vacaciones o licencias médicas) que sobreescriban la regla recurrente semanal.
 - **Notificaciones Transaccionales**: Envío de confirmación y recordatorio por correo electrónico (Resend) o WhatsApp (Twilio).
-- **Cancelación / Reprogramación**: Flujo para que el paciente o médico cancele la cita mediante un enlace seguro con token.
+- **Pasarela de Pagos / Copagos en Línea**: Cobro anticipado o verificación de cobertura de aseguradoras.
 
 ---
 

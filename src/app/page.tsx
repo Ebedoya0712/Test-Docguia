@@ -8,6 +8,7 @@ import { SlotGrid } from "@/components/SlotGrid";
 import { BookingModal } from "@/components/BookingModal";
 import { SuccessAlertModal } from "@/components/SuccessAlertModal";
 import { TimeSlot } from "@/lib/slots";
+import { supabase } from "@/lib/supabaseClient";
 import { Sparkles } from "lucide-react";
 
 export default function BookingPage() {
@@ -36,6 +37,7 @@ export default function BookingPage() {
     id: string;
     patientName: string;
     patientEmail: string;
+    cancelToken?: string;
     doctor: Doctor | null;
     slot: TimeSlot | null;
     dateStr: string;
@@ -92,6 +94,24 @@ export default function BookingPage() {
 
   useEffect(() => {
     fetchSlots();
+  }, [fetchSlots]);
+
+  // Sincronización en vivo con Supabase Realtime (WebSockets)
+  useEffect(() => {
+    const channel = supabase
+      .channel("appointments-realtime")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "Appointment" },
+        () => {
+          fetchSlots();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, [fetchSlots]);
 
   const handleSelectSlot = (slot: TimeSlot) => {
@@ -188,6 +208,7 @@ export default function BookingPage() {
         patientName={successBooking?.patientName || ""}
         patientEmail={successBooking?.patientEmail || ""}
         bookingId={successBooking?.id || null}
+        cancelToken={successBooking?.cancelToken}
       />
     </div>
   );

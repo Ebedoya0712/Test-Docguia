@@ -39,9 +39,12 @@ model Appointment {
   patientPhone String?
   startTime    DateTime
   endTime      DateTime
-  status       String   @default("CONFIRMED")
+  status       String   @default("CONFIRMED") // CONFIRMED, CANCELLED
+  cancelToken  String   @unique @default(uuid())
   createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   @@unique([doctorId, startTime])
   @@index([doctorId, startTime])
+  @@index([cancelToken])
 }

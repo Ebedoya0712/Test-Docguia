@@ -14,6 +14,7 @@ interface SuccessAlertModalProps {
   patientName: string;
   patientEmail: string;
   bookingId: string | null;
+  cancelToken?: string | null;
 }
 
 export function SuccessAlertModal({
@@ -25,6 +26,7 @@ export function SuccessAlertModal({
   patientName,
   patientEmail,
   bookingId,
+  cancelToken,
 }: SuccessAlertModalProps) {
   if (!isOpen || !doctor || !slot) return null;
 
@@ -179,6 +181,19 @@ export function SuccessAlertModal({
           {bookingId && (
             <div className="text-[11px] font-mono font-semibold text-purple-700 bg-purple-50 px-3.5 py-1 rounded-full border border-purple-200 inline-block shadow-xs">
               CÓDIGO: {bookingId.slice(0, 8).toUpperCase()}
+            </div>
+          )}
+
+          {cancelToken && (
+            <div className="pt-0.5">
+              <a
+                href={`/cancelar/${cancelToken}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-purple-700 hover:text-purple-900 underline font-medium block transition-colors"
+              >
+                ¿Necesitas cancelar o reprogramar? Haz clic aquí
+              </a>
             </div>
           )}
 

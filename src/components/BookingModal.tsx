@@ -26,6 +26,7 @@ interface BookingModalProps {
     id: string;
     patientName: string;
     patientEmail: string;
+    cancelToken?: string;
   }) => void;
 }
 
@@ -108,6 +109,7 @@ export function BookingModal({
         id: data.id,
         patientName,
         patientEmail,
+        cancelToken: data.cancelToken,
       });
       handleClose();
     } catch (err: unknown) {
