@@ -64,6 +64,12 @@ export function BookingModal({
     setIsSubmitting(true);
 
     try {
+      const formattedPhone = patientPhone.trim()
+        ? patientPhone.trim().startsWith("+")
+          ? patientPhone.trim()
+          : `+58 ${patientPhone.trim().replace(/^0+/, "")}`
+        : null;
+
       const res = await fetch("/api/bookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -72,7 +78,7 @@ export function BookingModal({
           startTime: slot.startTime,
           patientName,
           patientEmail,
-          patientPhone,
+          patientPhone: formattedPhone,
         }),
       });
 
@@ -286,15 +292,20 @@ export function BookingModal({
                   <label className="block text-xs font-semibold text-slate-700 mb-1">
                     Teléfono Móvil (opcional)
                   </label>
-                  <div className="relative">
-                    <Phone className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                  <div className="relative flex items-center">
+                    <div className="absolute left-3 flex items-center gap-1.5 text-slate-500 text-xs pointer-events-none select-none">
+                      <Phone className="w-3.5 h-3.5 text-slate-400" />
+                      <span className="font-semibold text-slate-700 pr-1.5 border-r border-slate-200">
+                        +58
+                      </span>
+                    </div>
                     <input
                       type="tel"
-                      placeholder="+56 9 1234 5678"
+                      placeholder="412 123 4567"
                       value={patientPhone}
                       onChange={(e) => setPatientPhone(e.target.value)}
                       disabled={isSubmitting || isConflict}
-                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                      className="w-full pl-20 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
                     />
                   </div>
                 </div>
