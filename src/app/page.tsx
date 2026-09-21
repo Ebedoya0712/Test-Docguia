@@ -8,7 +8,7 @@ import { SlotGrid } from "@/components/SlotGrid";
 import { BookingModal } from "@/components/BookingModal";
 import { SuccessAlertModal } from "@/components/SuccessAlertModal";
 import { TimeSlot } from "@/lib/slots";
-import { Stethoscope, ShieldCheck, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 export default function BookingPage() {
   const [doctors, setDoctors] = useState<Doctor[]>([]);
@@ -156,16 +156,6 @@ export default function BookingPage() {
           />
         </section>
 
-        {/* Garantías / Trust footer */}
-        <footer className="pt-2 pb-6 text-center space-y-2">
-          <div className="inline-flex items-center gap-1.5 text-xs text-purple-900/80 font-medium bg-purple-50/80 border border-purple-200/60 px-3 py-1 rounded-full">
-            <ShieldCheck className="w-4 h-4 text-purple-600" />
-            <span>Sistema seguro con protección contra reservas duplicadas</span>
-          </div>
-          <p className="text-[11px] text-slate-400">
-            DocGuía © {new Date().getFullYear()} — Plataforma de Gestión Médica
-          </p>
-        </footer>
       </main>
 
       {/* Modal de Reserva */}
