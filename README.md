@@ -55,9 +55,7 @@ npm test
 
 ## ⏱️ Qué se dejó fuera por tiempo (Próximos Pasos)
 
-- **Gestión de Excepciones y Feriados**: Bloqueos de fechas específicas (vacaciones o licencias médicas) que sobreescriban la regla recurrente semanal.
 - **Notificaciones Transaccionales**: Envío de confirmación y recordatorio por correo electrónico (Resend) o WhatsApp (Twilio).
-- **Pasarela de Pagos / Copagos en Línea**: Cobro anticipado o verificación de cobertura de aseguradoras.
 
 ---
 
